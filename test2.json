@@ -1,0 +1,22 @@
+{
+    "state": 0,
+    "order":[{
+        "img":"https://pic.solux.cn/image/29/df/2a/ab4681e1795306b1d18cfd0cad.png?1509963079#h",
+        "orderId":"1486114",
+        "orderState":"发货中",
+        "totalNum":"3",
+        "money":"1880"
+    },{
+        "img":"https://pic.solux.cn/image/29/df/2a/ab4681e1795306b1d18cfd0cad.png?1509963079#h",
+        "orderId":"1486114",
+        "orderState":"已完成",
+        "totalNum":"3",
+        "money":"1880"
+    },{
+        "img":"https://pic.solux.cn/image/29/df/2a/ab4681e1795306b1d18cfd0cad.png?1509963079#h",
+        "orderId":"1486114",
+        "orderState":"退货中",
+        "totalNum":"3",
+        "money":"1880"
+    }]
+}
