@@ -52,6 +52,11 @@
       orderItem,
       searchOrder
     },
+    mounted: function () {
+      this.$nextTick(function () {
+          var clipboard = new this.ClipboardJS('.copyBtn')
+      });
+    },
     methods:{
       _getOrder(){
         const loading = this.$loading({

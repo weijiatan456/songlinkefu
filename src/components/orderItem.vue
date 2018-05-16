@@ -1,50 +1,71 @@
 <template>
 <div>
-  <div class="order_item">
-    <img class="itemImg" :src="orderMsg.image_default_id">
-    <h2>订单号：{{orderMsg.order_id}}</h2>
-    <div class="state">订单状态：{{orderMsg.status}}</div>
-    <div class="msg">共{{orderMsg.itemnum}}件&nbsp;&nbsp;&nbsp;&nbsp;合计：￥{{orderMsg.final_amount}}</div>
-    <div class="arrow">
-      <el-button size="mini" @click="_openDetail($event)" :data-id="orderMsg.order_id" plain>
-        <span v-if="open">缩合<i class="el-icon-caret-top el-icon--right"></i></span>
-        <span v-else>展开<i class="el-icon-caret-bottom el-icon--right"></i></span>
-      </el-button>
-      <el-button size="mini" type="primary" plain>发送</el-button>
+    <div class="order_item">
+        <img class="itemImg" :src="orderMsg.image_default_id">
+        <h2>订单号：{{orderMsg.order_id}}</h2>
+        <div class="state">
+            订单状态：{{orderMsg.status}}
+        </div>
+        <div class="msg">
+            共{{orderMsg.itemnum}}件&nbsp;&nbsp;&nbsp;&nbsp;合计：￥{{orderMsg.final_amount}}
+        </div>
+        <div class="arrow">
+            <el-button size="mini" @click="_openDetail($event)" :data-id="orderMsg.order_id" plain>
+            <span v-if="open">缩合<i class="el-icon-caret-top el-icon--right"></i></span>
+            <span v-else>展开<i class="el-icon-caret-bottom el-icon--right"></i></span>
+            </el-button>
+            <el-button size="mini" class="copyBtn" type="primary" plain :data-clipboard-text="'订单号:'+orderMsg.order_id+'\n订单状态：'+orderMsg.status+'\n共计：'+ orderMsg.itemnum+'件\n合计：￥'+ orderMsg.final_amount">复制</el-button>
+        </div>
     </div>
-  </div>
-  <el-collapse-transition>
+    <el-collapse-transition>
     <div class="order_detail" v-show="open">
-      <ul>
-        <li v-for="(item,index) in detail.order_items">
-          <div class="pd_number">{{index+1}}</div>
-          <div class="pd_name">{{item.name}}</div>
-          <div class="pd_msg">￥{{item.price}}&nbsp;&nbsp;&nbsp;&nbsp;数量：{{item.nums}}</div>
-          <div class="pd_sku">sku:{{item.bn}}</div>
-        </li>
-      </ul>
-      <div class="order_msg">
-        <div>下单时间：{{detail.pay_time}}</div>
-        <div>收件人：{{detail.ship_name}}</div>
-        <div>联系方式：{{detail.ship_mobile}}</div>
-        <div>地址：{{detail.ship_addr}}</div>
-        <div>订单留言：{{detail.memo}}</div>
-      </div>
-      <div class="wuliu">
-        <h3>物流信息</h3>
-        <el-steps :space="200" :active="parseInt(detail.progress)"  align-center>
-          <el-step title="创建"></el-step>
-          <el-step title="付款"></el-step>
-          <el-step title="备货"></el-step>
-          <el-step title="发货"></el-step>
-          <el-step title="完成"></el-step>
-        </el-steps>
-      </div>
+        <ul>
+            <li v-for="(item,index) in detail.order_items">
+            <div class="pd_number">
+                {{index+1}}
+            </div>
+            <div class="pd_name">
+                {{item.name}}
+            </div>
+            <div class="pd_msg">
+                ￥{{item.price}}&nbsp;&nbsp;&nbsp;&nbsp;数量：{{item.nums}}
+            </div>
+            <div class="pd_sku">
+                sku:{{item.bn}}
+            </div>
+            </li>
+        </ul>
+        <div class="order_msg">
+            <div>
+                下单时间：{{detail.pay_time}}
+            </div>
+            <div>
+                收件人：{{detail.ship_name}}
+            </div>
+            <div>
+                联系方式：{{detail.ship_mobile}}
+            </div>
+            <div>
+                地址：{{detail.ship_addr}}
+            </div>
+            <div>
+                订单留言：{{detail.memo}}
+            </div>
+        </div>
+        <div class="wuliu">
+            <h3>物流信息</h3>
+            <el-steps :space="200" :active="parseInt(detail.progress)" align-center>
+            <el-step title="创建"></el-step>
+            <el-step title="付款"></el-step>
+            <el-step title="备货"></el-step>
+            <el-step title="发货"></el-step>
+            <el-step title="完成"></el-step>
+            </el-steps>
+        </div>
     </div>
-  </el-collapse-transition>
+    </el-collapse-transition>
 </div>
 </template>
-
 <script type="text/ecmascript-6">
 import {getOrderDetail} from 'api/order'
 import {ERR_OK} from 'api/config'
@@ -79,7 +100,6 @@ export default {
   }
 }
 </script>
-  
 <style scoped>
 .order_item{padding:15px 0 15px 80px;height:74px;position:relative;background:#f5f5f5;}
 .itemImg{width:72px;height:72px;border:1px solid #e0e0e0;position:absolute;top:15px;left:0;}

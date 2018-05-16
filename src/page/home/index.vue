@@ -10,7 +10,7 @@
       <h1>{{curview.name}}</h1>
       <div class="msg">价格：￥{{curview.price}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：{{curview.store}}</div>
       <div class="send">
-        <el-button type="primary"  size="mini" plain>发送</el-button>
+        <el-button size="mini" class="copyBtn3" type="primary" plain :data-clipboard-text="curview.name+'\n价格：'+curview.price+'    库存：'+ curview.store">复制</el-button>
       </div>
     </div>
     <div class="title">
@@ -110,6 +110,11 @@
     },
     created() {
       this._getHome()
+    },
+    mounted: function () {
+      this.$nextTick(function () {
+          var clipboard3 = new this.ClipboardJS('.copyBtn3');
+      });
     },
     methods: {
       _getHome() {

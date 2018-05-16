@@ -14,7 +14,7 @@
                   <div class="msg">价格：￥{{child.price}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：{{child.store}}</div>
                   <div class="sku">sku：{{child.bn}}</div>
                   <div class="send">
-                    <el-button type="primary"  size="mini" plain>发送</el-button>
+                    <el-button size="mini" class="copyBtn2" type="primary" plain :data-clipboard-text="child.name+'\n价格：'+child.price+'    库存：'+ child.store+'\nsku：'+ child.bn">复制</el-button>
                   </div>
                 </div>
               </el-collapse-item>
@@ -31,7 +31,7 @@
               <div class="msg">价格：￥{{item.price}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量：{{item.quantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存：{{item.store}}</div>
               <div class="sku">sku：{{item.bn}}</div>
               <div class="send">
-                <el-button type="primary"  size="mini" plain>发送</el-button>
+                <el-button size="mini" class="copyBtn2" type="primary" plain :data-clipboard-text="item.name+'\n价格：'+item.price+'    数量：'+ item.quantity+'    库存：'+ item.store+'\nsku：'+ item.bn">复制</el-button>
               </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
               <div class="msg">价格：￥{{item.price}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>库存：{{item.store}}</span>（冻结{{item.freez}}）</div>
               <div class="sku">sku：{{item.bn}}</div>
               <div class="send">
-                <el-button type="primary"  size="mini" plain>发送</el-button>
+                <el-button size="mini" class="copyBtn2" type="primary" plain :data-clipboard-text="item.name+'\n价格：'+item.price+'    库存：'+ item.store+'（冻结：'+ item.freez+'）\nsku：'+ item.bn">复制</el-button>
               </div>
           </div>
         </div>
@@ -78,6 +78,14 @@
     },
     created(){
       this._getList();
+    },
+    mounted: function () {
+      this.$nextTick(function () {
+          var clipboard2 = new this.ClipboardJS('.copyBtn2');
+          // clipboard2.on('success', function(e) {
+          //   console.log(e);
+          // });
+      });
     },
     components: {
       PHead

@@ -6,7 +6,7 @@
     <div class="state">订单状态：{{searchMsg.status}}</div>
     <div class="msg">共{{searchMsg.itemnum}}件&nbsp;&nbsp;&nbsp;&nbsp;合计：￥{{searchMsg.final_amount}}</div>
     <div class="arrow">
-      <el-button size="mini" type="primary" plain>发送</el-button>
+      <el-button size="mini" class="copyBtn" type="primary" plain :data-clipboard-text="'订单号:'+searchMsg.order_id+'\n订单状态：'+searchMsg.status+'\n共计：'+ searchMsg.itemnum+'件\n合计：￥'+ searchMsg.final_amount">复制</el-button>
     </div>
   </div>
   <div class="order_detail">
